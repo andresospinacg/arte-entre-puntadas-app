@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/bg_primary">
+
+    <!-- CardView con bordes oválados para la imagen -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="40dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/bg_secondary">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/abuelo_personalizado"
+            android:scaleType="centerCrop"
+            android:contentDescription="Personalizado" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Título con Cal Sans (32sp) -->
+    <TextView
+        android:id="@+id/tv_page_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/custom_title"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:lineHeight="40sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- Descripción con Inter -->
+    <TextView
+        android:id="@+id/tv_page_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/custom_desc"
+        android:textAlignment="center"
+        android:textColor="@color/text_light_gray"
+        android:textSize="16sp"
+        android:lineSpacingExtra="6dp"
+        android:fontFamily="sans-serif" />
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/bg_primary">
+
+    <!-- Emojis representativos -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🐻🧑🐐"
+        android:textSize="80sp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center" />
+
+    <!-- Título con Cal Sans (32sp) -->
+    <TextView
+        android:id="@+id/tv_page_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/products_title"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:lineHeight="40sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- Descripción con Inter -->
+    <TextView
+        android:id="@+id/tv_page_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="6dp"
+        android:text="@string/products_desc"
+        android:textAlignment="center"
+        android:textColor="@color/text_light_gray"
+        android:textSize="16sp" />
+
+</LinearLayout>

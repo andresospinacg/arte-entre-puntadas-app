@@ -1,3 +1,66 @@
 <resources>
-    <string name="app_name">App_Arte_Entre_Puntadas</string>
+    <string name="app_name">Arte Entre Puntadas</string>
+    
+    <!-- Splash Activity -->
+    <string name="splash_title">Arte Entre Puntadas</string>
+    <string name="splash_subtitle">Amigurumis Artesanales</string>
+    <string name="loading">Cargando...</string>
+    
+    <!-- Bienvenida Activity -->
+    <string name="skip">Omitir</string>
+    <string name="close">Cerrar</string>
+    <string name="next">Siguiente</string>
+    <string name="start">¡Comenzar!</string>
+    
+    <!-- Página 1: Bienvenida -->
+    <string name="welcome_title">¡Bienvenido a Arte Entre Puntadas!</string>
+    <string name="welcome_desc">Descubre el mundo mágico de los amigurumis artesanales. Cada puntada cuenta una historia única.</string>
+    
+    <!-- Página 2: Productos Únicos -->
+    <string name="products_title">Productos Únicos</string>
+    <string name="products_desc">• Personajes y muñecas\n• Animales adorables\n• Diseños personalizados\n• Accesorios especiales</string>
+    
+    <!-- Página 3: Personalizado -->
+    <string name="custom_title">¡Hazlo Personalizado!</string>
+    <string name="custom_desc">Convierte fotos en amigurumis únicos. Elige colores, tamaños y detalles especiales para crear algo verdaderamente tuyo.</string>
+    
+    <!-- Página 4: Calidad -->
+    <string name="quality_title">Calidad Garantizada</string>
+    <string name="quality_desc">✓ Materiales premium\n✓ Hecho completamente a mano\n✓ Cada pieza es única\n✓ Con amor desde Ibagué</string>
+
+    <!-- Login Activity -->
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="welcome_back">¡Bienvenido de nuevo!</string>
+    <string name="login_subtitle">Inicia sesión para continuar</string>
+    <string name="email_hint">Email o usuario</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="remember_me">Recordarme</string>
+    <string name="forgot_password">¿Olvidaste tu...?</string>
+    <string name="btn_login">Iniciar Sesión</string>
+    <string name="btn_google">Continuar con Google</string>
+    <string name="no_account">¿No tienes cuenta? Regístrate</string>
+
+    <!-- Register Activity -->
+    <string name="register_title">Registro</string>
+    <string name="create_account">Crear tu cuenta</string>
+    <string name="fullname_hint">Nombre completo</string>
+    <string name="email_hint_example">hola@ejemplo.com</string>
+    <string name="phone_hint">+57 3001234567</string>
+    <string name="confirm_password_hint">Confirmar contraseña</string>
+    <string name="accept_terms">Acepto términos y condiciones</string>
+    <string name="btn_register">Crear Cuenta</string>
+    <string name="have_account">¿Ya tienes cuenta? Inicia sesión</string>
+
+    <!-- Profile Activity -->
+    <string name="profile_title">Perfil</string>
+    <string name="personal_info">Información Personal</string>
+    <string name="name_hint">Nombre: María González</string>
+    <string name="phone_hint_profile">Teléfono: +57 300 123 4567</string>
+    <string name="security">Seguridad</string>
+    <string name="btn_change_password">Cambiar contraseña</string>
+    <string name="btn_logout">Cerrar Sesión</string>
+
+    <!-- Common -->
+    <string name="back">Volver</string>
+    <string name="menu">Menú</string>
 </resources>

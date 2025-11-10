@@ -137,7 +137,8 @@ class Bienvenida : AppCompatActivity() {
     }
 
     private fun navigateToMain() {
-        val intent = Intent(this, MainActivity::class.java)
+        // Navegar a LoginActivity en lugar de MainActivity
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         finish()

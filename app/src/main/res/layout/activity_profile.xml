@@ -154,6 +154,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_name" />
 
+        <!-- Botón Guardar Cambios -->
+        <Button
+            android:id="@+id/btn_save_profile"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:text="Guardar Cambios"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:background="@drawable/button_rounded_background"
+            android:backgroundTint="@color/green_accent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_phone" />
+
         <!-- Sección Seguridad -->
         <TextView
             android:id="@+id/tv_security"
@@ -165,7 +181,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_phone" />
+            app:layout_constraintTop_toBottomOf="@id/btn_save_profile" />
 
         <!-- Botón Cambiar Contraseña -->
         <Button

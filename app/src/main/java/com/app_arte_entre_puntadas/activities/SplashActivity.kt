@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.app_arte_entre_puntadas.MainActivity
 import com.app_arte_entre_puntadas.R
+import com.app_arte_entre_puntadas.data.local.SessionManager
 
 class SplashActivity : AppCompatActivity() {
 
@@ -97,16 +98,23 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun navigateToMainActivity() {
-        // Verificar si el usuario ya ha visto la bienvenida
-        val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
-        val hasSeenWelcome = sharedPreferences.getBoolean("has_seen_welcome", false)
+        // Verificar si el usuario ya tiene sesión activa
+        val sessionManager = SessionManager(this)
         
-        val intent = if (hasSeenWelcome) {
-            // Si ya vio la bienvenida, ir directo al login
-            Intent(this, LoginActivity::class.java)
-        } else {
-            // Si no, mostrar bienvenida
-            Intent(this, Bienvenida::class.java)
+        val intent = when {
+            // Si tiene sesión, ir directo a MainActivity
+            sessionManager.isLoggedIn() -> {
+                Intent(this, MainActivity::class.java)
+            }
+            // Si no tiene sesión pero ya vio la bienvenida, ir a Login
+            getSharedPreferences("app_preferences", MODE_PRIVATE)
+                .getBoolean("has_seen_welcome", false) -> {
+                Intent(this, LoginActivity::class.java)
+            }
+            // Si no ha visto la bienvenida, mostrarla
+            else -> {
+                Intent(this, Bienvenida::class.java)
+            }
         }
         
         startActivity(intent)

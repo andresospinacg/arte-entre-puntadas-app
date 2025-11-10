@@ -63,4 +63,42 @@
     <!-- Common -->
     <string name="back">Volver</string>
     <string name="menu">Menú</string>
+    
+    <!-- Products -->
+    <string name="products">Productos</string>
+    <string name="search_products">Buscar productos...</string>
+    <string name="no_products">No hay productos disponibles</string>
+    <string name="error_loading_products">Error al cargar productos</string>
+    <string name="retry">Reintentar</string>
+    <string name="add_product">Agregar producto</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="product_image">Imagen del producto</string>
+    <string name="empty_list">Lista vacía</string>
+    <string name="error">Error</string>
+    
+    <!-- Product Form -->
+    <string name="create_product">Crear Producto</string>
+    <string name="edit_product">Editar Producto</string>
+    <string name="product_name">Nombre del producto</string>
+    <string name="product_description">Descripción</string>
+    <string name="product_price">Precio</string>
+    <string name="product_stock">Stock</string>
+    <string name="product_category">Categoría</string>
+    <string name="select_category">Seleccionar categoría</string>
+    <string name="product_available">Producto disponible</string>
+    <string name="select_image">Seleccionar imagen</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="product_detail">Detalle del producto</string>
+    
+    <!-- Cart -->
+    <string name="cart">Carrito</string>
+    <string name="my_cart">Mi Carrito</string>
+    <string name="carrito_vacio">Carrito vacío</string>
+    <string name="imagen_producto">Imagen del producto</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="add_to_cart">Agregar al carrito</string>
+    <string name="empty_cart">Tu carrito está vacío</string>
+    <string name="cart_item_count">%d items</string>
 </resources>

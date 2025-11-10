@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Documentación local (no incluir en el repositorio)
+/docs/
+/database/

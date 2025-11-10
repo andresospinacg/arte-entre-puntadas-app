@@ -3,6 +3,7 @@ package com.app_arte_entre_puntadas.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.CheckBox
@@ -10,9 +11,21 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
+import com.app_arte_entre_puntadas.BuildConfig
 import com.app_arte_entre_puntadas.MainActivity
 import com.app_arte_entre_puntadas.R
+import com.app_arte_entre_puntadas.data.repository.AuthRepository
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,13 +41,37 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var icPasswordToggle: ImageView
     
     private var isPasswordVisible = false
+    private lateinit var authRepository: AuthRepository
+    private lateinit var googleSignInClient: GoogleSignInClient
+    
+    private val googleSignInLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        handleGoogleSignInResult(task)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Configurar Edge-to-Edge
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        
         setContentView(R.layout.activity_login)
 
+        authRepository = AuthRepository(this)
+        setupGoogleSignIn()
         initializeViews()
         setupListeners()
+    }
+    
+    private fun setupGoogleSignIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(BuildConfig.GOOGLE_WEB_CLIENT_ID)
+            .requestEmail()
+            .build()
+        
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     private fun initializeViews() {
@@ -81,6 +118,43 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     
+    private fun handleGoogleLogin() {
+        val signInIntent = googleSignInClient.signInIntent
+        googleSignInLauncher.launch(signInIntent)
+    }
+    
+    private fun handleGoogleSignInResult(task: Task<GoogleSignInAccount>) {
+        try {
+            val account = task.getResult(ApiException::class.java)
+            val idToken = account.idToken ?: throw Exception("No se pudo obtener el token de Google")
+            
+            lifecycleScope.launch {
+                btnGoogle.isEnabled = false
+                val result = authRepository.loginWithGoogle(idToken)
+                
+                runOnUiThread {
+                    btnGoogle.isEnabled = true
+                    result.onSuccess { profile ->
+                        Toast.makeText(
+                            this@LoginActivity, 
+                            "¡Bienvenido ${profile.fullName}!", 
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        navigateToMain()
+                    }.onFailure { error ->
+                        showError(error.message ?: "Error al iniciar sesión con Google")
+                    }
+                }
+            }
+        } catch (e: ApiException) {
+            Log.e("LoginActivity", "Error en Google Sign-In: código ${e.statusCode}", e)
+            showError("Error al iniciar sesión con Google. Por favor, intenta de nuevo.")
+        } catch (e: Exception) {
+            Log.e("LoginActivity", "Error procesando resultado de Google", e)
+            showError(e.message ?: "Error al iniciar sesión con Google")
+        }
+    }
+    
     private fun togglePasswordVisibility() {
         if (isPasswordVisible) {
             // Ocultar contraseña
@@ -104,29 +178,36 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() && !email.contains("@")) {
-            // Permitir usuario sin @ o validar email con @
-            if (email.contains("@")) {
-                showError("Email inválido")
-                return
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            showError("Email inválido")
+            return
+        }
+
+        // Deshabilitar botón mientras se procesa
+        btnLogin.isEnabled = false
+        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show()
+
+        // Autenticar con Supabase
+        lifecycleScope.launch {
+            val result = authRepository.login(email, password)
+            
+            runOnUiThread {
+                btnLogin.isEnabled = true
+                
+                result.onSuccess { profile ->
+                    // Guardar preferencia de recordar
+                    if (cbRemember.isChecked) {
+                        val sharedPref = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                        sharedPref.edit().putString("email", email).apply()
+                    }
+                    
+                    Toast.makeText(this@LoginActivity, "¡Bienvenido ${profile.fullName}!", Toast.LENGTH_SHORT).show()
+                    navigateToMain()
+                }.onFailure { error ->
+                    showError(error.message ?: "Error al iniciar sesión")
+                }
             }
         }
-
-        // Guardar preferencia de recordar
-        if (cbRemember.isChecked) {
-            val sharedPref = getSharedPreferences("user_prefs", MODE_PRIVATE)
-            sharedPref.edit().putString("email", email).apply()
-        }
-
-        // TODO: Implementar autenticación con backend
-        // Por ahora, navegar a MainActivity si las credenciales son válidas
-        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show()
-        navigateToMain()
-    }
-
-    private fun handleGoogleLogin() {
-        Toast.makeText(this, "Autenticación con Google en desarrollo", Toast.LENGTH_SHORT).show()
-        // TODO: Implementar autenticación con Google
     }
 
     private fun showError(message: String) {

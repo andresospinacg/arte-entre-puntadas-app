@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/productListFragment">
+
+    <!-- Fragment de lista de productos -->
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.app_arte_entre_puntadas.ui.products.ProductListFragment"
+        android:label="@string/products"
+        tools:layout="@layout/fragment_product_list">
+        
+        <action
+            android:id="@+id/action_productList_to_productForm"
+            app:destination="@id/productFormFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        
+        <action
+            android:id="@+id/action_productList_to_productDetail"
+            app:destination="@id/productDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <!-- Fragment de formulario de producto (crear/editar) -->
+    <fragment
+        android:id="@+id/productFormFragment"
+        android:name="com.app_arte_entre_puntadas.ui.products.ProductFormFragment"
+        android:label="@string/create_product"
+        tools:layout="@layout/fragment_product_form">
+        
+        <argument
+            android:name="productId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <!-- Fragment de detalle de producto (placeholder para futuro) -->
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.app_arte_entre_puntadas.ui.products.ProductDetailFragment"
+        android:label="@string/product_detail"
+        tools:layout="@layout/fragment_product_detail">
+        
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

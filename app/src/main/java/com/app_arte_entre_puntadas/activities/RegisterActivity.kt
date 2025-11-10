@@ -10,7 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.app_arte_entre_puntadas.R
+import com.app_arte_entre_puntadas.data.models.RegisterDTO
+import com.app_arte_entre_puntadas.data.repository.AuthRepository
+import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -29,11 +33,13 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var icInfoPhone: ImageView
     private lateinit var icInfoPassword: ImageView
     private lateinit var icInfoConfirm: ImageView
+    private lateinit var authRepository: AuthRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        authRepository = AuthRepository(this)
         initializeViews()
         setupListeners()
     }
@@ -127,9 +133,46 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        // TODO: Implementar registro con backend
-        showSuccess("¡Cuenta creada exitosamente!")
-        navigateToLogin()
+        // Deshabilitar botón mientras se procesa
+        btnRegister.isEnabled = false
+        Toast.makeText(this, "Registrando usuario...", Toast.LENGTH_SHORT).show()
+
+        // Registrar con Supabase
+        lifecycleScope.launch {
+            val registerDTO = RegisterDTO(
+                email = email,
+                password = password,
+                fullName = fullname,
+                phone = phone
+            )
+            
+            val result = authRepository.register(registerDTO)
+            
+            runOnUiThread {
+                btnRegister.isEnabled = true
+                
+                result.onSuccess { profile ->
+                    showSuccess("¡Cuenta creada exitosamente! Por favor inicia sesión.")
+                    // Esperar un poco y navegar a login
+                    android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                        navigateToLogin()
+                    }, 2000)
+                }.onFailure { error ->
+                    val message = error.message ?: "Error al crear la cuenta"
+                    
+                    // Si el mensaje indica que necesita confirmar email, mostrar mensaje especial
+                    if (message.contains("verifica tu email", ignoreCase = true)) {
+                        showSuccess(message)
+                        // Esperar un poco antes de ir a login
+                        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                            navigateToLogin()
+                        }, 3000)
+                    } else {
+                        showError(message)
+                    }
+                }
+            }
+        }
     }
 
     private fun showError(message: String) {

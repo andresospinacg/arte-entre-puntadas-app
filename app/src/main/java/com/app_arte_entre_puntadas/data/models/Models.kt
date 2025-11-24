@@ -462,3 +462,203 @@ data class CreateOrderItemDTO(
     @SerialName("subtotal")
     val subtotal: Double
 )
+
+/**
+ * Modelo extendido de usuario con geolocalización y datos de tienda
+ */
+@Serializable
+data class User(
+    @SerialName("id")
+    val id: String,
+    
+    @SerialName("full_name")
+    val fullName: String,
+    
+    @SerialName("phone")
+    val phone: String? = null,
+    
+    @SerialName("role")
+    val role: String = "client", // client o admin
+    
+    @SerialName("avatar_url")
+    val avatarUrl: String? = null,
+    
+    // Datos de geolocalización personal
+    @SerialName("latitude")
+    val latitude: Double? = null,
+    
+    @SerialName("longitude")
+    val longitude: Double? = null,
+    
+    @SerialName("address")
+    val address: String? = null,
+    
+    @SerialName("city")
+    val city: String? = null,
+    
+    @SerialName("country")
+    val country: String? = null,
+    
+    // Datos de tienda física (para artesanos)
+    @SerialName("store_name")
+    val storeName: String? = null,
+    
+    @SerialName("store_description")
+    val storeDescription: String? = null,
+    
+    @SerialName("store_latitude")
+    val storeLatitude: Double? = null,
+    
+    @SerialName("store_longitude")
+    val storeLongitude: Double? = null,
+    
+    @SerialName("store_address")
+    val storeAddress: String? = null,
+    
+    @SerialName("store_phone")
+    val storePhone: String? = null,
+    
+    @SerialName("store_image_url")
+    val storeImageUrl: String? = null,
+    
+    @SerialName("created_at")
+    val createdAt: String? = null,
+    
+    @SerialName("updated_at")
+    val updatedAt: String? = null
+) {
+    fun isAdmin(): Boolean = role == "admin"
+    fun isClient(): Boolean = role == "client"
+    fun hasLocation(): Boolean = latitude != null && longitude != null
+    fun hasStore(): Boolean = !storeName.isNullOrEmpty()
+    fun hasStoreLocation(): Boolean = storeLatitude != null && storeLongitude != null
+    
+    // Email se obtiene de auth.users, no de profiles
+    fun getEmail(): String = "" // Se debe obtener del contexto de autenticación
+}
+
+/**
+ * DTO para crear usuario con geolocalización
+ */
+@Serializable
+data class CreateUserDTO(
+    @SerialName("full_name")
+    val fullName: String,
+    
+    @SerialName("phone")
+    val phone: String? = null,
+    
+    @SerialName("role")
+    val role: String = "client",
+    
+    @SerialName("avatar_url")
+    val avatarUrl: String? = null,
+    
+    @SerialName("latitude")
+    val latitude: Double? = null,
+    
+    @SerialName("longitude")
+    val longitude: Double? = null,
+    
+    @SerialName("address")
+    val address: String? = null,
+    
+    @SerialName("city")
+    val city: String? = null,
+    
+    @SerialName("country")
+    val country: String? = null,
+    
+    @SerialName("store_name")
+    val storeName: String? = null,
+    
+    @SerialName("store_description")
+    val storeDescription: String? = null,
+    
+    @SerialName("store_latitude")
+    val storeLatitude: Double? = null,
+    
+    @SerialName("store_longitude")
+    val storeLongitude: Double? = null,
+    
+    @SerialName("store_address")
+    val storeAddress: String? = null,
+    
+    @SerialName("store_phone")
+    val storePhone: String? = null,
+    
+    @SerialName("store_image_url")
+    val storeImageUrl: String? = null,
+    
+    // Campos para crear usuario en auth (no se envían a profiles)
+    @kotlinx.serialization.Transient
+    val email: String? = null,
+    
+    @kotlinx.serialization.Transient
+    val password: String? = null
+)
+
+/**
+ * DTO para actualizar usuario
+ */
+@Serializable
+data class UpdateUserDTO(
+    @SerialName("full_name")
+    val fullName: String? = null,
+    
+    @SerialName("phone")
+    val phone: String? = null,
+    
+    @SerialName("role")
+    val role: String? = null,
+    
+    @SerialName("avatar_url")
+    val avatarUrl: String? = null,
+    
+    @SerialName("latitude")
+    val latitude: Double? = null,
+    
+    @SerialName("longitude")
+    val longitude: Double? = null,
+    
+    @SerialName("address")
+    val address: String? = null,
+    
+    @SerialName("city")
+    val city: String? = null,
+    
+    @SerialName("country")
+    val country: String? = null,
+    
+    @SerialName("store_name")
+    val storeName: String? = null,
+    
+    @SerialName("store_description")
+    val storeDescription: String? = null,
+    
+    @SerialName("store_latitude")
+    val storeLatitude: Double? = null,
+    
+    @SerialName("store_longitude")
+    val storeLongitude: Double? = null,
+    
+    @SerialName("store_address")
+    val storeAddress: String? = null,
+    
+    @SerialName("store_phone")
+    val storePhone: String? = null,
+    
+    @SerialName("store_image_url")
+    val storeImageUrl: String? = null
+)
+
+/**
+ * Clase de datos para ubicación
+ */
+data class Location(
+    val latitude: Double,
+    val longitude: Double,
+    val address: String? = null,
+    val city: String? = null,
+    val country: String? = null
+)

@@ -29,4 +29,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_activities">#09090B</color>
     <color name="Color_Marca">#FACC15</color>
+    
+    <!-- Colores de Chips -->
+    <color name="chip_admin">#EF4444</color>
+    <color name="chip_client">#3B82F6</color>
+    <color name="chip_store">#10B981</color>
+    <color name="chip_location">#F59E0B</color>
 </resources>

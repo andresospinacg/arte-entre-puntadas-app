@@ -15,6 +15,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_users"
+        android:title="Gestionar Usuarios"
+        android:icon="@android:drawable/ic_menu_manage"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_settings"
         android:title="Configuración"
         android:icon="@android:drawable/ic_menu_preferences"

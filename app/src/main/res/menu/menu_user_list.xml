@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Buscar"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Filtrar">
+
+        <menu>
+            <item
+                android:id="@+id/action_filter_all"
+                android:title="Todos los usuarios" />
+
+            <item
+                android:id="@+id/action_filter_admins"
+                android:title="Administradores" />
+
+            <item
+                android:id="@+id/action_filter_clients"
+                android:title="Clientes" />
+
+            <item
+                android:id="@+id/action_filter_stores"
+                android:title="Con tienda física" />
+
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/action_find_nearby"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="Buscar cercanos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:title="Actualizar"
+        app:showAsAction="never" />
+
+</menu>

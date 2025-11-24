@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Avatar -->
+        <ImageView
+            android:id="@+id/iv_user_avatar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Avatar del usuario"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_person_placeholder" />
+
+        <!-- Nombre -->
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btn_edit_user"
+            app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_user_avatar"
+            tools:text="Juan Pérez" />
+
+        <!-- Teléfono -->
+        <TextView
+            android:id="@+id/tv_user_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="@+id/tv_user_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+            tools:text="📞 300 123 4567" />
+
+        <!-- Dirección -->
+        <TextView
+            android:id="@+id/tv_user_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/iv_user_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_user_avatar"
+            tools:text="📍 Calle 123 #45-67, Bogotá" />
+
+        <!-- Contenedor de chips -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_address"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_address">
+
+            <!-- Chip de rol -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_user_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cliente"
+                app:chipBackgroundColor="@color/chip_client" />
+
+            <!-- Chip de tienda -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_has_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏪 Tienda"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!-- Chip de ubicación -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_has_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍 Ubicación"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Botón editar -->
+        <ImageButton
+            android:id="@+id/btn_edit_user"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Editar usuario"
+            android:src="@android:drawable/ic_menu_edit"
+            app:tint="?attr/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete_user"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Botón eliminar -->
+        <ImageButton
+            android:id="@+id/btn_delete_user"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Eliminar usuario"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -101,4 +101,68 @@
     <string name="add_to_cart">Agregar al carrito</string>
     <string name="empty_cart">Tu carrito está vacío</string>
     <string name="cart_item_count">%d items</string>
+    
+    <!-- Users -->
+    <string name="users">Usuarios</string>
+    <string name="user_management">Gestión de Usuarios</string>
+    <string name="new_user">Nuevo Usuario</string>
+    <string name="edit_user">Editar Usuario</string>
+    <string name="delete_user">Eliminar Usuario</string>
+    <string name="user_details">Detalles del Usuario</string>
+    <string name="no_users">No hay usuarios</string>
+    <string name="search_users">Buscar usuarios...</string>
+    
+    <!-- User Form -->
+    <string name="personal_information">Información Personal</string>
+    <string name="location">Ubicación</string>
+    <string name="store_information">Información de Tienda</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="role">Rol</string>
+    <string name="get_current_location">Obtener ubicación actual</string>
+    <string name="address">Dirección</string>
+    <string name="city">Ciudad</string>
+    <string name="country">País</string>
+    <string name="has_physical_store">Tiene tienda física</string>
+    <string name="store_name">Nombre de la tienda</string>
+    <string name="store_description">Descripción de la tienda</string>
+    <string name="store_address">Dirección de la tienda</string>
+    <string name="store_phone">Teléfono de la tienda</string>
+    <string name="store_location">Ubicación de la tienda</string>
+    <string name="select_profile_photo">Seleccionar foto de perfil</string>
+    <string name="select_store_photo">Seleccionar foto de tienda</string>
+    <string name="take_photo">Tomar foto</string>
+    <string name="select_from_gallery">Seleccionar de galería</string>
+    <string name="location_not_configured">Ubicación no configurada</string>
+    <string name="location_saved">Ubicación guardada</string>
+    <string name="store_location_not_configured">Ubicación de tienda no configurada</string>
+    <string name="store_location_saved">Ubicación de tienda guardada</string>
+    
+    <!-- User Filters -->
+    <string name="all_users">Todos los usuarios</string>
+    <string name="filter_admins">Administradores</string>
+    <string name="filter_clients">Clientes</string>
+    <string name="filter_with_store">Con tienda física</string>
+    <string name="find_nearby">Buscar cercanos</string>
+    <string name="find_nearby_users">Buscar usuarios cercanos</string>
+    <string name="find_nearby_stores">Buscar tiendas cercanas</string>
+    <string name="select_search_radius">Seleccionar radio de búsqueda</string>
+    <string name="what_to_search">¿Qué desea buscar?</string>
+    <string name="users_option">Usuarios</string>
+    <string name="stores_option">Tiendas</string>
+    
+    <!-- Permissions -->
+    <string name="camera_permission_required">Se requiere permiso de cámara</string>
+    <string name="location_permission_required">Se requieren permisos de ubicación</string>
+    <string name="storage_permission_required">Se requiere permiso de almacenamiento</string>
+    
+    <!-- Messages -->
+    <string name="user_created">Usuario creado exitosamente</string>
+    <string name="user_updated">Usuario actualizado exitosamente</string>
+    <string name="user_deleted">Usuario eliminado exitosamente</string>
+    <string name="location_obtained">Ubicación obtenida correctamente</string>
+    <string name="avatar_updated">Avatar actualizado</string>
+    <string name="confirm_delete_user">¿Está seguro de que desea eliminar este usuario?</string>
+    <string name="image_uploaded">Imagen subida correctamente</string>
+    <string name="error_uploading_image">Error al subir imagen</string>
+    <string name="error_getting_location">No se pudo obtener la ubicación</string>
 </resources>

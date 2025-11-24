@@ -110,6 +110,9 @@ dependencies {
     // Google Auth
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     
+    // Google Play Services Location
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    
     // Glide para cargar imágenes
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")

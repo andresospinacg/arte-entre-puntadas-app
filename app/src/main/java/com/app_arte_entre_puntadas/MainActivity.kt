@@ -19,6 +19,7 @@ import com.app_arte_entre_puntadas.data.remote.SupabaseClient
 import com.app_arte_entre_puntadas.ui.cart.CartFragment
 import com.app_arte_entre_puntadas.ui.cart.CartViewModel
 import com.app_arte_entre_puntadas.ui.products.ProductListFragment
+import com.app_arte_entre_puntadas.ui.users.UserListActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -79,6 +80,11 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         cartMenuItem = menu?.findItem(R.id.action_cart)
         updateCartBadge(cartViewModel.cartItemCount.value ?: 0)
+        
+        // Mostrar opción de gestión de usuarios solo para administradores
+        val usersMenuItem = menu?.findItem(R.id.action_users)
+        usersMenuItem?.isVisible = sessionManager.isAdmin()
+        
         return true
     }
 
@@ -90,6 +96,11 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_profile -> {
                 val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_users -> {
+                val intent = Intent(this, UserListActivity::class.java)
                 startActivity(intent)
                 true
             }
